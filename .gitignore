@@ -8,9 +8,7 @@ venv/
 # 生成物
 data/*.db
 data/*.db-journal
-reports/*.json
-reports/*.md
-reports/*.html
+reports/
 logs/
 
 # 交叉编码器权重（1 GB 级，用时再下）
