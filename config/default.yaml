@@ -1,0 +1,52 @@
+# 问数（AskData）· 配置文件
+# 只写"要覆盖默认值的部分"，没写的项自动使用代码里的默认值。
+
+app:
+  name: 问数
+  log_level: INFO
+
+database:
+  dialect: sqlite        # sqlite / mysql / postgres
+  path: data/demo_shop.db  # sqlite 用这个
+  dsn: ""                # mysql/postgres 用这个，形如 mysql://user:pass@host:3306/db
+
+dictionary:
+  path: data/schema_meta.yaml   # 表和字段的中文说明；库只读时字典放这里
+
+executor:
+  read_only: true      # 只读沙箱开关，生产环境不要关
+  timeout_s: 10.0      # 单条查询最长执行时间（秒）
+  max_rows: 500        # 单次最多返回行数
+
+retriever:
+  dense_top_k: 20      # 向量召回候选数
+  sparse_top_k: 20     # 关键字召回候选数
+  fusion: rrf          # 融合方式：rrf / weighted
+  rrf_k: 60            # 倒数排名融合的平滑常数
+  rerank:
+    provider: none     # none / overlap / cross_encoder / llm
+                       # 三种重排都实测过了：overlap −1.00、cross_encoder −4.50、llm +1.00（噪声内）
+                       # 结论是表级重排在这个规模不成立，保持关闭
+    top_n: 5           # 重排后保留的表数量
+  graph_expand:
+    enabled: true      # 是否沿外键补一跳邻接表
+    max_hops: 1
+    seed_count: 2      # 只从排名最靠前的几张表扩展，否则候选会铺满全库
+
+embedder:
+  provider: hash       # hash=离线简易向量；openai_compatible=真实模型
+  dimension: 256
+
+llm:
+  provider: mock       # mock=离线模拟；openai_compatible=真实模型
+  model: ""
+  temperature: 0.0
+  base_url: ""
+  api_key_env: OPENAI_API_KEY
+
+generation:
+  max_repair_rounds: 2
+
+evaluation:
+  dataset: data/golden_set.jsonl
+  report_dir: reports

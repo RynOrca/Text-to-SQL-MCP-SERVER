@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 生成物
+data/*.db
+data/*.db-journal
+reports/*.json
+reports/*.md
+reports/*.html
+logs/
+
+# 交叉编码器权重（1 GB 级，用时再下）
+models/
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store
+
+# 密钥
+.env
+
+# 教学内容（不随代码发布）
+.teach/
+

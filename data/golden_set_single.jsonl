@@ -1,0 +1,59 @@
+{"id": "s16", "question": "女性客户有多少人？", "sql": "SELECT COUNT(*) FROM customers WHERE gender = '女'", "tables": ["customers"], "difficulty": "single", "note": "枚举过滤计数"}
+{"id": "s17", "question": "每个渠道的客户数分别是多少？", "sql": "SELECT channel, COUNT(*) FROM customers GROUP BY channel", "tables": ["customers"], "difficulty": "single", "note": "分组计数"}
+{"id": "s18", "question": "2026 年注册的客户有多少人？", "sql": "SELECT COUNT(*) FROM customers WHERE register_date >= '2026-01-01' AND register_date < '2027-01-01'", "tables": ["customers"], "difficulty": "single", "note": "日期范围"}
+{"id": "s19", "question": "客户里出生日期最早的是哪一天？", "sql": "SELECT MIN(birth_date) FROM customers", "tables": ["customers"], "difficulty": "single", "note": "最小值"}
+{"id": "s20", "question": "默认收货地址有多少条？", "sql": "SELECT COUNT(*) FROM customer_addresses WHERE is_default = 1", "tables": ["customer_addresses"], "difficulty": "single", "note": "布尔过滤"}
+{"id": "s21", "question": "已取消的订单有多少笔？", "sql": "SELECT COUNT(*) FROM orders WHERE status = '已取消'", "tables": ["orders"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s22", "question": "单笔订单的最高实付金额是多少？", "sql": "SELECT MAX(pay_amount) FROM orders", "tables": ["orders"], "difficulty": "single", "note": "最大值"}
+{"id": "s23", "question": "所有订单的优惠金额合计是多少？", "sql": "SELECT SUM(discount_amount) FROM orders", "tables": ["orders"], "difficulty": "single", "note": "求和"}
+{"id": "s24", "question": "参加了营销活动的订单有多少笔？", "sql": "SELECT COUNT(*) FROM orders WHERE campaign_id IS NOT NULL", "tables": ["orders"], "difficulty": "single", "note": "非空判断"}
+{"id": "s25", "question": "2026 年 1 月一共有多少笔订单？", "sql": "SELECT COUNT(*) FROM orders WHERE order_date >= '2026-01-01' AND order_date < '2026-02-01'", "tables": ["orders"], "difficulty": "single", "note": "月份范围"}
+{"id": "s26", "question": "订单明细中购买数量为 3 的记录有多少条？", "sql": "SELECT COUNT(*) FROM order_items WHERE quantity = 3", "tables": ["order_items"], "difficulty": "single", "note": "数值过滤"}
+{"id": "s27", "question": "订单明细的金额合计是多少？", "sql": "SELECT SUM(amount) FROM order_items", "tables": ["order_items"], "difficulty": "single", "note": "求和"}
+{"id": "s28", "question": "订单明细中最高的单价是多少？", "sql": "SELECT MAX(unit_price) FROM order_items", "tables": ["order_items"], "difficulty": "single", "note": "最大值"}
+{"id": "s29", "question": "支付成功的支付记录有多少条？", "sql": "SELECT COUNT(*) FROM payments WHERE status = '成功'", "tables": ["payments"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s30", "question": "退款原因是七天无理由的退款有多少笔？", "sql": "SELECT COUNT(*) FROM refunds WHERE reason = '七天无理由'", "tables": ["refunds"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s31", "question": "退款状态为处理中的退款金额合计是多少？", "sql": "SELECT SUM(amount) FROM refunds WHERE status = '处理中'", "tables": ["refunds"], "difficulty": "single", "note": "条件求和"}
+{"id": "s32", "question": "承运商为顺丰速运的运单有多少条？", "sql": "SELECT COUNT(*) FROM shipments WHERE carrier = '顺丰速运'", "tables": ["shipments"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s33", "question": "物流状态为运输中的运单有多少条？", "sql": "SELECT COUNT(*) FROM shipments WHERE status = '运输中'", "tables": ["shipments"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s34", "question": "评分为 5 分的评价有多少条？", "sql": "SELECT COUNT(*) FROM reviews WHERE rating = 5", "tables": ["reviews"], "difficulty": "single", "note": "数值过滤"}
+{"id": "s35", "question": "评价内容的平均长度是多少个字符？", "sql": "SELECT AVG(LENGTH(content)) FROM reviews", "tables": ["reviews"], "difficulty": "single", "note": "字符串长度函数"}
+{"id": "s36", "question": "在售的商品有多少个？", "sql": "SELECT COUNT(*) FROM products WHERE status = '在售'", "tables": ["products"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s37", "question": "售价最高的 3 个商品是哪些？", "sql": "SELECT name, price FROM products ORDER BY price DESC LIMIT 3", "tables": ["products"], "difficulty": "single", "note": "排序取前 N"}
+{"id": "s38", "question": "每个商品状态的数量分别是多少？", "sql": "SELECT status, COUNT(*) FROM products GROUP BY status", "tables": ["products"], "difficulty": "single", "note": "分组计数"}
+{"id": "s39", "question": "二级类目一共有多少个？", "sql": "SELECT COUNT(*) FROM categories WHERE parent_id IS NOT NULL", "tables": ["categories"], "difficulty": "single", "note": "非空判断"}
+{"id": "s40", "question": "供应商评分高于 4.5 的有几个？", "sql": "SELECT COUNT(*) FROM suppliers WHERE rating > 4.5", "tables": ["suppliers"], "difficulty": "single", "note": "数值比较"}
+{"id": "s41", "question": "所有仓库的库存总量是多少？", "sql": "SELECT SUM(quantity) FROM inventory", "tables": ["inventory"], "difficulty": "single", "note": "求和"}
+{"id": "s42", "question": "库存数量少于 10 的记录有多少条？", "sql": "SELECT COUNT(*) FROM inventory WHERE quantity < 10", "tables": ["inventory"], "difficulty": "single", "note": "数值比较"}
+{"id": "s43", "question": "地区表里每个层级的数量分别是多少？", "sql": "SELECT level, COUNT(*) FROM regions GROUP BY level", "tables": ["regions"], "difficulty": "single", "note": "分组计数"}
+{"id": "s44", "question": "营销活动的总预算是多少？", "sql": "SELECT SUM(budget) FROM campaigns", "tables": ["campaigns"], "difficulty": "single", "note": "求和"}
+{"id": "s45", "question": "预算最高的营销活动是哪个？", "sql": "SELECT name, budget FROM campaigns ORDER BY budget DESC LIMIT 1", "tables": ["campaigns"], "difficulty": "single", "note": "排序取第一条"}
+{"id": "s46", "question": "满减类型的营销活动有几个？", "sql": "SELECT COUNT(*) FROM campaigns WHERE type = '满减'", "tables": ["campaigns"], "difficulty": "single", "note": "枚举过滤"}
+{"id": "s47", "question": "已发布的文章有多少篇？", "sql": "SELECT COUNT(*) FROM articles WHERE status = '已发布'", "tables": ["articles"], "difficulty": "single", "note": "跨域：内容域"}
+{"id": "s48", "question": "文章的平均字数是多少？", "sql": "SELECT AVG(word_count) FROM articles", "tables": ["articles"], "difficulty": "single", "note": "跨域：内容域"}
+{"id": "s49", "question": "2026 年发布的文章有多少篇？", "sql": "SELECT COUNT(*) FROM articles WHERE publish_date >= '2026-01-01' AND publish_date < '2027-01-01'", "tables": ["articles"], "difficulty": "single", "note": "跨域：日期范围"}
+{"id": "s50", "question": "文章评论的平均评分是多少？", "sql": "SELECT AVG(rating) FROM comments", "tables": ["comments"], "difficulty": "single", "note": "跨域：与商品评价易混"}
+{"id": "s51", "question": "文章评论里评分低于 3 分的有多少条？", "sql": "SELECT COUNT(*) FROM comments WHERE rating < 3", "tables": ["comments"], "difficulty": "single", "note": "跨域：数值比较"}
+{"id": "s52", "question": "作者一共有多少个？", "sql": "SELECT COUNT(*) FROM authors", "tables": ["authors"], "difficulty": "single", "note": "跨域：计数"}
+{"id": "s53", "question": "二级栏目一共有多少个？", "sql": "SELECT COUNT(*) FROM topics WHERE parent_id IS NOT NULL", "tables": ["topics"], "difficulty": "single", "note": "跨域：非空判断"}
+{"id": "s54", "question": "状态为有效的订阅用户有多少人？", "sql": "SELECT COUNT(*) FROM subscriptions WHERE status = '有效'", "tables": ["subscriptions"], "difficulty": "single", "note": "跨域：枚举过滤"}
+{"id": "s55", "question": "状态为退订的订阅用户有多少人？", "sql": "SELECT COUNT(*) FROM subscriptions WHERE status = '退订'", "tables": ["subscriptions"], "difficulty": "single", "note": "跨域：枚举过滤"}
+{"id": "s56", "question": "每个订阅渠道的用户数分别是多少？", "sql": "SELECT channel, COUNT(*) FROM subscriptions GROUP BY channel", "tables": ["subscriptions"], "difficulty": "single", "note": "跨域：分组计数"}
+{"id": "s57", "question": "页面浏览记录的总浏览量是多少？", "sql": "SELECT SUM(views) FROM page_views", "tables": ["page_views"], "difficulty": "single", "note": "跨域：求和"}
+{"id": "s58", "question": "平均停留时长超过 200 秒的浏览记录有多少条？", "sql": "SELECT COUNT(*) FROM page_views WHERE avg_duration_s > 200", "tables": ["page_views"], "difficulty": "single", "note": "跨域：数值比较"}
+{"id": "s59", "question": "关键词数据问答的总搜索量是多少？", "sql": "SELECT SUM(search_volume) FROM keyword_metrics WHERE keyword = '数据问答'", "tables": ["keyword_metrics"], "difficulty": "single", "note": "跨域：条件求和"}
+{"id": "s60", "question": "搜索量最高的 5 个关键词是哪些？", "sql": "SELECT keyword, SUM(search_volume) AS total FROM keyword_metrics GROUP BY keyword ORDER BY total DESC LIMIT 5", "tables": ["keyword_metrics"], "difficulty": "single", "note": "跨域：分组排序"}
+{"id": "s61", "question": "广告总花费是多少？", "sql": "SELECT SUM(spend) FROM ad_spend", "tables": ["ad_spend"], "difficulty": "single", "note": "跨域：求和"}
+{"id": "s62", "question": "每个投放渠道的广告花费合计是多少？", "sql": "SELECT channel, SUM(spend) FROM ad_spend GROUP BY channel", "tables": ["ad_spend"], "difficulty": "single", "note": "跨域：分组求和"}
+{"id": "s63", "question": "曝光次数超过 100 万次的投放记录有多少条？", "sql": "SELECT COUNT(*) FROM ad_spend WHERE impressions > 1000000", "tables": ["ad_spend"], "difficulty": "single", "note": "跨域：数值比较"}
+{"id": "s64", "question": "一共有多少个不同的标签？", "sql": "SELECT COUNT(DISTINCT tag) FROM article_tags", "tables": ["article_tags"], "difficulty": "single", "note": "跨域：去重计数"}
+{"id": "s65", "question": "标签为提示词的文章有多少篇？", "sql": "SELECT COUNT(DISTINCT article_id) FROM article_tags WHERE tag = '提示词'", "tables": ["article_tags"], "difficulty": "single", "note": "跨域：条件去重"}
+{"id": "s66", "question": "邮件推送里被打开过的有多少条？", "sql": "SELECT COUNT(*) FROM newsletter_sends WHERE opened = 1", "tables": ["newsletter_sends"], "difficulty": "single", "note": "跨域：布尔过滤"}
+{"id": "s67", "question": "邮件推送里被点击过的有多少条？", "sql": "SELECT COUNT(*) FROM newsletter_sends WHERE clicked = 1", "tables": ["newsletter_sends"], "difficulty": "single", "note": "跨域：布尔过滤"}
+{"id": "s68", "question": "2025 年之前注册的客户有多少人？", "sql": "SELECT COUNT(*) FROM customers WHERE register_date < '2025-01-01'", "tables": ["customers"], "difficulty": "single", "note": "日期比较"}
+{"id": "s69", "question": "实付金额在 1000 元以上的订单有多少笔？", "sql": "SELECT COUNT(*) FROM orders WHERE pay_amount > 1000", "tables": ["orders"], "difficulty": "single", "note": "数值比较"}
+{"id": "s70", "question": "平均每笔订单的优惠金额是多少？", "sql": "SELECT AVG(discount_amount) FROM orders", "tables": ["orders"], "difficulty": "single", "note": "平均值"}
+{"id": "s71", "question": "订单明细里单价低于 50 元的记录有多少条？", "sql": "SELECT COUNT(*) FROM order_items WHERE unit_price < 50", "tables": ["order_items"], "difficulty": "single", "note": "数值比较"}
+{"id": "s72", "question": "支付金额合计是多少？", "sql": "SELECT SUM(amount) FROM payments", "tables": ["payments"], "difficulty": "single", "note": "求和"}
+{"id": "s73", "question": "退款金额最高的一笔是多少？", "sql": "SELECT MAX(amount) FROM refunds", "tables": ["refunds"], "difficulty": "single", "note": "最大值"}
+{"id": "s74", "question": "商品成本合计是多少？", "sql": "SELECT SUM(cost) FROM products", "tables": ["products"], "difficulty": "single", "note": "求和"}
